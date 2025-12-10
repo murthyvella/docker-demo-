@@ -1,2 +1,15 @@
 ---
 # tasks file for httpd
+- name: install httpd in node
+      yum: name=httpd state=present
+
+    - name: start httpd service
+      service: name=httpd state=started
+
+    - name: copying file from this node to another node
+      ansible.builtin.copy:
+        src: index.html
+        dest: /var/www/html/
+        owner: root
+        group: root
+        mode: '0644'
